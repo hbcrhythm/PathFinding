@@ -24,7 +24,8 @@ test() ->
 	Grid7 = path_finding_grid:setWalkableAt(9, 9 ,false, Grid6),
 	Grid8 = path_finding_grid:setWalkableAt(8, 9 ,false, Grid7),
 	% Grid9 = path_finding_grid:setWalkableAt(10, 10 ,false, Grid8),
-	jump_point_finder:finder(1, 1, 10, 10, #path_finding_finder{diagonal_movement = ?DM_Never, heuristic = ?Heuristic_Euclidean}, Grid8).
+	Path = jump_point_finder:finder(1, 1, 10, 10, #path_finding_finder{diagonal_movement = ?DM_Never, heuristic = ?Heuristic_Euclidean}, Grid8),
+	path_finding_util:smoothenPath(Path, Grid8).
 
 %%====================================================================
 %% Internal functions
