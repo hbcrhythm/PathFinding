@@ -1,0 +1,68 @@
+DM_Always	include\path_finding.hrl	/^-define(DM_Always, 1).$/;"	d
+DM_IfAtMostOneObstacle	include\path_finding.hrl	/^-define(DM_IfAtMostOneObstacle, 3).$/;"	d
+DM_Never	include\path_finding.hrl	/^-define(DM_Never, 2).$/;"	d
+DM_OnlyWhenNoObstacles	include\path_finding.hrl	/^-define(DM_OnlyWhenNoObstacles, 4).$/;"	d
+Heuristic_Chebyshev	include\path_finding.hrl	/^-define(Heuristic_Chebyshev, fun(Dx, Dy) -> max(Dx, Dy) end).$/;"	d
+Heuristic_Euclidean	include\path_finding.hrl	/^-define(Heuristic_Euclidean, fun(Dx, Dy) -> math:sqrt(Dx * Dx + Dy * Dy) end).$/;"	d
+Heuristic_Manhattan	include\path_finding.hrl	/^-define(Heuristic_Manhattan, fun(Dx, Dy) -> Dx + Dy end).$/;"	d
+Heuristic_Octile	include\path_finding.hrl	/^-define(Heuristic_Octile, fun(Dx, Dy) -> case Dx < Dy of true ->(math:sqrt(2) - 1) * Dx + Dy; false ->(math:sqrt(2) - 1) * Dy + Dx end end).$/;"	d
+path_finding_finder	include\path_finding.hrl	/^-record(path_finding_finder, {$/;"	r
+path_finding_grid	include\path_finding.hrl	/^-record(path_finding_grid, {$/;"	r
+path_finding_node	include\path_finding.hrl	/^-record(path_finding_node, {$/;"	r
+findNeighbors	src\jpf_always_move_diagonally.erl	/^findNeighbors(#path_finding_node{x = X, y = Y, parent = #path_finding_node{x = Px, y = Py}}, Grid) ->$/;"	f	module:jpf_always_move_diagonally
+findNeighbors	src\jpf_always_move_diagonally.erl	/^findNeighbors(Node = #path_finding_node{parent = undefined}, Grid) ->$/;"	f	module:jpf_always_move_diagonally
+jpf_always_move_diagonally	src\jpf_always_move_diagonally.erl	/^-module(jpf_always_move_diagonally).$/;"	m
+jump	src\jpf_always_move_diagonally.erl	/^jump(X, Y, Px, Py, EndNode = #path_finding_node{x = EndX, y = EndY}, Finder = #path_finding_finder{track_jump_recursion = TrackJumpRecursion}, Grid) ->$/;"	f	module:jpf_always_move_diagonally
+findNeighbors	src\jpf_move_diagonally_if_at_most_one_obstacle.erl	/^findNeighbors(Node = #path_finding_node{x = X, y = Y, parent = Parent}, Grid) ->$/;"	f	module:jpf_move_diagonally_if_at_most_one_obstacle
+jpf_move_diagonally_if_at_most_one_obstacle	src\jpf_move_diagonally_if_at_most_one_obstacle.erl	/^-module(jpf_move_diagonally_if_at_most_one_obstacle).$/;"	m
+jump	src\jpf_move_diagonally_if_at_most_one_obstacle.erl	/^jump(X, Y, Px, Py, EndNode = #path_finding_node{x = EndX, y = EndY}, Finder = #path_finding_finder{track_jump_recursion = TrackJumpRecursion}, Grid) ->$/;"	f	module:jpf_move_diagonally_if_at_most_one_obstacle
+findNeighbors	src\jpf_move_diagonally_if_no_obstacle.erl	/^findNeighbors(#path_finding_node{x = X, y = Y, parent = #path_finding_node{x = Px, y = Py}}, Grid) ->$/;"	f	module:jpf_move_diagonally_if_no_obstacle
+findNeighbors	src\jpf_move_diagonally_if_no_obstacle.erl	/^findNeighbors(Node = #path_finding_node{parent = undefined}, Grid) ->$/;"	f	module:jpf_move_diagonally_if_no_obstacle
+jpf_move_diagonally_if_no_obstacle	src\jpf_move_diagonally_if_no_obstacle.erl	/^-module(jpf_move_diagonally_if_no_obstacle).$/;"	m
+jump	src\jpf_move_diagonally_if_no_obstacle.erl	/^jump(X, Y, Px, Py, EndNode = #path_finding_node{x = EndX, y = EndY}, Finder = #path_finding_finder{track_jump_recursion = TrackJumpRecursion}, Grid) ->$/;"	f	module:jpf_move_diagonally_if_no_obstacle
+findNeighbors	src\jpf_never_move_diagonally.erl	/^findNeighbors(#path_finding_node{x = X, y = Y, parent = #path_finding_node{x = Px, y = Py}}, Grid) ->$/;"	f	module:jpf_never_move_diagonally
+findNeighbors	src\jpf_never_move_diagonally.erl	/^findNeighbors(Node = #path_finding_node{parent = undefined}, Grid) ->$/;"	f	module:jpf_never_move_diagonally
+jpf_never_move_diagonally	src\jpf_never_move_diagonally.erl	/^-module(jpf_never_move_diagonally).$/;"	m
+jump	src\jpf_never_move_diagonally.erl	/^jump(X, Y, Px, Py, EndNode = #path_finding_node{x = EndX, y = EndY}, Finder = #path_finding_finder{track_jump_recursion = TrackJumpRecursion}, Grid) ->$/;"	f	module:jpf_never_move_diagonally
+do_finder	src\jump_point_finder.erl	/^do_finder(OpenList, EndNode, Finder, Grid) ->$/;"	f	module:jump_point_finder
+do_finder	src\jump_point_finder.erl	/^do_finder([], _, _, _) -> [];$/;"	f	module:jump_point_finder
+finder	src\jump_point_finder.erl	/^finder(StartX, StartY, EndX, EndY, Finder, Grid) ->$/;"	f	module:jump_point_finder
+identifySuccessors	src\jump_point_finder.erl	/^identifySuccessors(OpenList, Node = #path_finding_node{x = X, y = Y, g = G}, EndNode = #path_finding_node{x = EndX, y = EndY}, $/;"	f	module:jump_point_finder
+jump_point_finder	src\jump_point_finder.erl	/^-module(jump_point_finder).$/;"	m
+grid	src\path_finding.erl	/^grid(Width, Height) ->$/;"	f	module:path_finding
+jumpPoinmtFinder	src\path_finding.erl	/^jumpPoinmtFinder(StartX, StartY, EndX, EndY, Finder, Grid) ->$/;"	f	module:path_finding
+path_finding	src\path_finding.erl	/^-module(path_finding).$/;"	m
+test	src\path_finding.erl	/^test() ->$/;"	f	module:path_finding
+buildNodes	src\path_finding_grid.erl	/^buildNodes(Width, Height) when is_integer(Width) andalso is_integer(Height) ->$/;"	f	module:path_finding_grid
+getNeighbors	src\path_finding_grid.erl	/^getNeighbors(#path_finding_node{x = X, y = Y}, DianonalMovement, Grid = #path_finding_grid{nodes = Nodes}) ->$/;"	f	module:path_finding_grid
+getNodeAt	src\path_finding_grid.erl	/^getNodeAt(X, Y, #path_finding_grid{nodes = Nodes}) ->$/;"	f	module:path_finding_grid
+isInside	src\path_finding_grid.erl	/^isInside(X, Y, #path_finding_grid{width = Width, height = Height}) ->$/;"	f	module:path_finding_grid
+isWalkableAt	src\path_finding_grid.erl	/^isWalkableAt(X, Y, Grid = #path_finding_grid{nodes = Nodes}) ->$/;"	f	module:path_finding_grid
+path_finding_grid	src\path_finding_grid.erl	/^-module(path_finding_grid).$/;"	m
+path_finding_grid	src\path_finding_grid.erl	/^path_finding_grid(Width, Height) ->$/;"	f	module:path_finding_grid
+setWalkableAt	src\path_finding_grid.erl	/^setWalkableAt(X, Y, WalkAble, Grid = #path_finding_grid{nodes = Nodes}) ->$/;"	f	module:path_finding_grid
+updateNodeAt	src\path_finding_grid.erl	/^updateNodeAt(X, Y, Node, Grid = #path_finding_grid{nodes = Nodes}) ->$/;"	f	module:path_finding_grid
+heap	src\path_finding_heap.erl	/^heap() ->$/;"	f	module:path_finding_heap
+path_finding_heap	src\path_finding_heap.erl	/^-module(path_finding_heap).$/;"	m
+pop	src\path_finding_heap.erl	/^pop([H | T]) ->$/;"	f	module:path_finding_heap
+push	src\path_finding_heap.erl	/^push(Key, Value, Heap) ->$/;"	f	module:path_finding_heap
+update	src\path_finding_heap.erl	/^update(Key, Value, Heap) ->$/;"	f	module:path_finding_heap
+backtrace	src\path_finding_util.erl	/^backtrace(#path_finding_node{x = X, y = Y, parent = Parent}, Grid, PathList) ->$/;"	f	module:path_finding_util
+backtrace	src\path_finding_util.erl	/^backtrace(Node, Grid) ->$/;"	f	module:path_finding_util
+backtrace	src\path_finding_util.erl	/^backtrace(undefined, _, PathList) ->$/;"	f	module:path_finding_util
+do_expandPath	src\path_finding_util.erl	/^do_expandPath([{Coord0X, Coord0Y}, {Coord1X, Coord1Y} | T], Expanded) ->$/;"	f	module:path_finding_util
+do_expandPath	src\path_finding_util.erl	/^do_expandPath([{X, Y}], Expanded) ->$/;"	f	module:path_finding_util
+expandPath	src\path_finding_util.erl	/^expandPath(Path) ->$/;"	f	module:path_finding_util
+interpolate	src\path_finding_util.erl	/^interpolate(X0, Y0, X0, Y0, _Dx, _Dy, _Sx, _Sy, _Err, Line) -> Line;$/;"	f	module:path_finding_util
+interpolate	src\path_finding_util.erl	/^interpolate(X0, Y0, X1, Y1) ->$/;"	f	module:path_finding_util
+interpolate	src\path_finding_util.erl	/^interpolate(X0, Y0, X1, Y1, Dx, Dy, Sx, Sy, Err, Line) ->$/;"	f	module:path_finding_util
+path_finding_util	src\path_finding_util.erl	/^-module(path_finding_util).$/;"	m
+smoothenPath	src\path_finding_util.erl	/^smoothenPath(Path = [{X0, Y0}, {X1, Y1} | Path2 ], Grid) ->$/;"	f	module:path_finding_util
+smoothenPath_blocked	src\path_finding_util.erl	/^smoothenPath_blocked([], _) -> false;$/;"	f	module:path_finding_util
+smoothenPath_blocked	src\path_finding_util.erl	/^smoothenPath_blocked([{TestCoord0, TestCoord1} | T], Grid) ->$/;"	f	module:path_finding_util
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.8	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/

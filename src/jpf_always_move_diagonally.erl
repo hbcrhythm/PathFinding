@@ -6,14 +6,13 @@
 
 findNeighbors(Node = #path_finding_node{parent = undefined}, Grid) ->
 	NeighborNodes = path_finding_grid:getNeighbors(Node, ?DM_Always, Grid),
-	% lager:info("NeighborNodes ~w",[NeighborNodes]),
 	Neighbors = [{NeighborNodex, NeighborNodeY} || #path_finding_node{x = NeighborNodex, y = NeighborNodeY} <- NeighborNodes],
 	Neighbors;
 findNeighbors(#path_finding_node{x = X, y = Y, parent = #path_finding_node{x = Px, y = Py}}, Grid) ->
 	Neighbors = [],
 	Dx = trunc((X - Px) / max(abs(X - Px), 1)),
 	Dy = trunc((Y - Py) / max(abs(Y - Py), 1)),
-	case Dx =/= 0 andalso Dy =/= 0 of
+	Neighbors99 = case Dx =/= 0 andalso Dy =/= 0 of
 		true ->
 			Neighbors2 = case path_finding_grid:isWalkableAt(X, Y + Dy, Grid) of
 					true ->
@@ -68,7 +67,7 @@ findNeighbors(#path_finding_node{x = X, y = Y, parent = #path_finding_node{x = P
 			end,
 			Neighbors4;
 		false ->
-			Neighbors2 = case path_finding_grid:isWalkableAt(X + Dy, Y, Grid) of
+			Neighbors2 = case path_finding_grid:isWalkableAt(X + Dx, Y, Grid) of
 				true ->
 					[{X + Dx, Y} | Neighbors];
 				false ->
@@ -76,18 +75,19 @@ findNeighbors(#path_finding_node{x = X, y = Y, parent = #path_finding_node{x = P
 			end,
 			Neighbors3 = case not path_finding_grid:isWalkableAt(X, Y + 1, Grid) of
 				true ->
-					[{X + Dy, Y + 1} | Neighbors2];
+					[{X + Dx, Y + 1} | Neighbors2];
 				false ->
 					Neighbors2
 			end,
 			Neighbors4 = case not path_finding_grid:isWalkableAt(X, Y - 1, Grid) of
 				true ->
-					[{X + Dy, Y - 1} | Neighbors3];
+					[{X + Dx, Y - 1} | Neighbors3];
 				false ->
 					Neighbors3
 			end,
 			Neighbors4
-	end.
+	end,
+	Neighbors99.
 
 % jump(X, Y, _, _, #path_finding_node{x = X, y = Y}, _, Grid) ->
 % 	{{X, Y}, Grid};
